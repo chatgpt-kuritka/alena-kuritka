@@ -1,0 +1,45 @@
+name: Sync Lovable dev to production
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - ".github/workflows/sync-from-dev.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out production repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Clone Lovable dev repository
+        run: |
+          git clone --depth 1 https://github.com/chatgpt-kuritka/alena-kuritka-dev.git /tmp/alena-kuritka-dev
+
+      - name: Sync source while preserving production domain config
+        run: |
+          rsync -a --delete \
+            --exclude ".git/" \
+            --exclude "CNAME" \
+            --exclude ".github/workflows/sync-from-dev.yml" \
+            /tmp/alena-kuritka-dev/ ./
+
+      - name: Commit production sync
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A
+          if git diff --cached --quiet; then
+            echo "No changes to sync."
+          else
+            git commit -m "Sync Lovable dev to production"
+            git push origin main
+          fi
