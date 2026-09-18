@@ -1,4 +1,4 @@
-name: Sync Lovable dev to production
+name: Publish static Lovable export to production
 
 on:
   push:
@@ -12,7 +12,7 @@ permissions:
   contents: write
 
 jobs:
-  sync:
+  publish:
     runs-on: ubuntu-latest
     steps:
       - name: Check out production repository
@@ -20,26 +20,27 @@ jobs:
         with:
           fetch-depth: 0
 
-      - name: Clone Lovable dev repository
+      - name: Clone static export from dev gh-pages
         run: |
-          git clone --depth 1 https://github.com/chatgpt-kuritka/alena-kuritka-dev.git /tmp/alena-kuritka-dev
+          git clone --depth 1 --branch gh-pages https://github.com/chatgpt-kuritka/alena-kuritka-dev.git /tmp/alena-kuritka-static
 
-      - name: Sync source while preserving production domain config
+      - name: Replace production contents with static export
         run: |
           rsync -a --delete \
             --exclude ".git/" \
             --exclude "CNAME" \
             --exclude ".github/workflows/sync-from-dev.yml" \
-            /tmp/alena-kuritka-dev/ ./
+            /tmp/alena-kuritka-static/ ./
+          printf "alena.kuritka.com" > CNAME
 
-      - name: Commit production sync
+      - name: Commit production publish
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add -A
           if git diff --cached --quiet; then
-            echo "No changes to sync."
+            echo "No changes to publish."
           else
-            git commit -m "Sync Lovable dev to production"
+            git commit -m "Publish static Lovable export to production"
             git push origin main
           fi
