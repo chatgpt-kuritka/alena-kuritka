@@ -1,4 +1,4 @@
-name: Publish static Lovable export to production
+name: Publish static Lovable dev export to production
 
 on:
   push:
@@ -20,18 +20,16 @@ jobs:
         with:
           fetch-depth: 0
 
-      - name: Clone static export from dev gh-pages
+      - name: Clone static export from dev branch
         run: |
-          git clone --depth 1 --branch gh-pages https://github.com/chatgpt-kuritka/alena-kuritka-dev.git /tmp/alena-kuritka-static
+          git clone --depth 1 --branch dev https://github.com/chatgpt-kuritka/alena-kuritka-dev.git /tmp/alena-kuritka-static
 
       - name: Replace production contents with static export
         run: |
           rsync -a --delete \
             --exclude ".git/" \
-            --exclude "CNAME" \
             --exclude ".github/workflows/sync-from-dev.yml" \
             /tmp/alena-kuritka-static/ ./
-          printf "alena.kuritka.com" > CNAME
 
       - name: Commit production publish
         run: |
@@ -41,6 +39,6 @@ jobs:
           if git diff --cached --quiet; then
             echo "No changes to publish."
           else
-            git commit -m "Publish static Lovable export to production"
+            git commit -m "Publish static dev branch to production"
             git push origin main
           fi
