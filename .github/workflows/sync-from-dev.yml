@@ -1,3 +1,4 @@
+# manual sync trigger: dev 3b9a34a
 name: Publish static Lovable dev export to production
 
 on:
