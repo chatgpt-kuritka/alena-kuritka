@@ -8,14 +8,7 @@ Live site: https://alena.kuritka.com
 
 Alena studied Graphic Design at a secondary Graphic Art school and later continued at the Faculty of Arts at Masaryk University.
 
-She works as a graphic designer, illustrator and producer, developing visual ideas from first sketch through to finished form. Her experience includes work for companies, galleries, museums, publishing houses and other cultural and commercial clients.
-
-Selected collaborations and projects include:
-- Ogilvy
-- Eternia Graphic Studio
-- Gallery of Chrism
-- Alchymist Café
-- Scarabeus Gallery
+She works as a graphic designer, illustrator and producer, developing visual ideas from first sketch through to finished form. Her experience spans commercial and cultural projects, including work for agencies, design studios, galleries, museums, publishing houses, cafés and other creative organizations.
 
 ## Portfolio
 
