@@ -35,14 +35,3 @@ Current featured projects include:
 
 - Email: alenakuritka@gmail.com
 - Phone: +420 721 011 680
-
-## Production
-
-This repository contains the **static production build** used by GitHub Pages.
-
-- Custom domain: `alena.kuritka.com`
-- Deployment target: GitHub Pages
-- Static export source: `chatgpt-kuritka/alena-kuritka-dev`, branch `dev`
-- Production branch: `main`
-
-The production publish workflow replaces the website files with the latest static export from the dev repository while preserving this README and the production deployment configuration.
