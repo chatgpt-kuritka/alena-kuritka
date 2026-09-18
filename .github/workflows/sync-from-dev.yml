@@ -29,6 +29,7 @@ jobs:
           rsync -a --delete \
             --exclude ".git/" \
             --exclude ".github/workflows/sync-from-dev.yml" \
+            --exclude "README.md" \
             /tmp/alena-kuritka-static/ ./
 
       - name: Commit production publish
