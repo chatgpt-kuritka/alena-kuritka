@@ -1,3 +1,4 @@
+# GENERATED from content.md by scripts/generate-content.mjs — DO NOT EDIT
 User-agent: Googlebot
 Allow: /
 
@@ -12,3 +13,5 @@ Allow: /
 
 User-agent: *
 Allow: /
+
+Sitemap: https://alena.kuritka.com/sitemap.xml
